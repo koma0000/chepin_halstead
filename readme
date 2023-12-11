@@ -1,0 +1,58 @@
+Библиотека в req.txt 
+база находится в instance/sqllite
+
+
+отправляется пост запрос json, пример 
+curl -X POST -H "Content-Type: application/json" -d '{
+    "description": "Описание",
+    "code": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    else:\n        return n * factorial(n-1)"
+}' http://localhost:5000/calculate_halstead
+
+
+
+Программа возращает JSON, где 
+
+program_difficulty: Сложность программы.
+program_effort: Затраты на программирование.
+program_id: Идентификатор программы в базе данных.
+program_length: Длина программы (сумма операторов и операндов).
+program_volume: Объем программы (по метрике Холстеда).
+programming_errors: Вероятность программных ошибок.
+programming_time: Время программирования (в днях).
+total_operands: Общее количество операндов в коде.
+total_operators: Общее количество операторов в коде.
+unique_operands: Уникальные операнды в коде.
+unique_operators: Уникальные операторы в коде.
+vocabulary: Общий размер словаря программы.
+
+
+
+Для вычисления Чепина, нужно сначала расчитать метрику Холстеда, отправляется следующий запрос 
+
+ curl -X POST -H "Content-Type: application/json" -d '{
+  "P": 10,
+  "M": 5,
+  "C": 3,
+  "T": 2
+}' http://localhost:5000/calculate_chepin/1
+
+где  в запросе 1 - это id, id находится таблице program 
+
+где, 
+•	P – вводимые переменные для расчетов и для обеспечения вывода.
+•	M – модифицируемые, или создаваемые внутри программы переменные.
+•	C – переменные, участвующие в управлении работой программного модуля (управляющие переменные).
+•	T – не используемые в программе переменные.
+(P.S. Ответ возращает в JSON)
+{
+  "C": 3,
+  "M": 5,
+  "P": 10,
+  "Q": 30.0,
+  "T": 2,
+  "program_code": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    else:\n        return n * factorial(n-1)",
+  "program_des": "\u041f\u0440\u0438\u043c\u0435\u0440 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b",
+  "program_id": 1
+}
+
+расчетные параметры хранятся в chepin_metric 

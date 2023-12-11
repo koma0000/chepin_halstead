@@ -1,0 +1,17 @@
++---------------------+      +-------------------------+      +-----------------------+
+|      program        |      |     chepin_metrics      |      |   halstead_metrics    |
++---------------------+      +-------------------------+      +-----------------------+
+| PK: id              |      | PK: id                  |      | PK: id                |
+|     description     |      | FK: program_id          |      | FK: program_id        |
+|     code            |      |     P                   |      |     total_operators   |
+|                     |<-----|     M                   |      |     total_operands    |
++---------------------+      |     C                   |      |     unique_operators  |
+         ^                   |     T                   |      |     unique_operands   |
+         |                   |     Q                   |      |     program_length    |
+         |                   +-------------------------+      |     vocabulary        |
+         |                                                    |     program_volume    |
+         |                                                    |     program_difficulty|
+         |----------------------------------------------------|     program_effort    |
+                                                              |     programming_time  |
+                                                              |     programming_errors|
+                                                              +-----------------------+

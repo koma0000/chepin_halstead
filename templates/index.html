@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор метрик</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Калькулятор метрик</h1>
+
+    <label for="description">Описание программы:</label>
+    <input type="text" id="description" placeholder="Введите описание программы">
+
+    <label for="code">Код программы:</label>
+    <textarea id="code" placeholder="Введите код программы"></textarea>
+
+    <button onclick="calculateMetrics()">Рассчитать метрики</button>
+
+    <div id="result"></div>
+
+    <div id="allPrograms">
+        <h2>Все программы</h2>
+        <ul id="programsList"></ul>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
